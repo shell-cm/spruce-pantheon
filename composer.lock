@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "568a148a4e8708cb1ffae840bcbe713a",
+    "content-hash": "12d6ef62e13a14f8a667c92050141dc5",
     "packages": [
         {
             "name": "academicpuma/citeproc-php",
@@ -7430,6 +7430,16 @@
                 }
             ],
             "time": "2023-04-17T16:00:37+00:00"
+        },
+        {
+            "name": "jackmoore/colorbox",
+            "version": "1.6.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jackmoore/colorbox/archive/refs/tags/1.6.4.zip",
+                "reference": "1.6.4"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "kenwheeler/slick",
