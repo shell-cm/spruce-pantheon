@@ -1,0 +1,58 @@
+// A collection of media block objects
+
+.usa-graphic-list {
+  @include typeset;
+  @include border-box-sizing;
+
+  .usa-graphic-list__row {
+    .usa-media-block {
+      margin-bottom: units(4);
+
+      @include at-media("tablet") {
+        margin-bottom: units(8);
+      }
+    }
+
+    &:last-child {
+      .usa-media-block {
+        @include at-media("tablet") {
+          margin-bottom: units(4);
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .usa-media-block__img {
+    padding-bottom: units(2);
+
+    img {
+      margin-right: units(3);
+    }
+  }
+
+  .usa-media-block__body {
+    > :nth-child(1) {
+      margin-top: 0;
+    }
+    > :nth-child(2) {
+      margin-top: units(1);
+    }
+    > :nth-child(3) {
+      margin-top: units(1);
+    }
+
+    padding-bottom: 2rem;
+  }
+}
+
+.usa-graphic-list__heading {
+  @include typeset-h3;
+
+  a {
+    color: $theme-color-ornl-primary;
+  }
+}

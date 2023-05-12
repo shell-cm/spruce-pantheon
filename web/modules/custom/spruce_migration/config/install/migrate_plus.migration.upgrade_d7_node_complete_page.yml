@@ -1,0 +1,75 @@
+uuid: b339a88c-f080-4ddc-8f25-839bea86e69e
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_page
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '47 Node complete (Small Slideshow Page)'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      node_id: 1
+      node_title: 'Spruce and Peatland Responses Under Changing Environments'
+      body: '<p class="usa-intro">An experiment to assess the response of northern peatland ecosystems to increases in temperature and exposures to elevated atmospheric CO<sub>2</sub> concentrations.</p><p>The SPRUCE experiment is the primary component of the Terrestrial Ecosystem Science Scientific Focus Area of ORNL''s Climate Change Program, focused on terrestrial ecosystems and the mechanisms that underlie their responses to climatic change. The experimental work is to be conducted in a Picea mariana [black spruce] – Sphagnum spp. bog forest in northern Minnesota, 40 km north of Grand Rapids, in the USDA Forest Service Marcell Experimental Forest (MEF). The site is located at the southern margin of the boreal peatland forest. It is an ecosystem considered especially vulnerable to climate change, and anticipated to be near its tipping point with respect to climate change. Responses to warming and interactions with increased atmospheric CO2 concentration are anticipated to have important feedbacks on the atmosphere and climate, because of the high carbon stocks harbored by such ecosystems.</p>'
+      promote: 0
+      sticky: 0
+      created: 1444925281
+      changed: 1444926198
+    -
+      node_id: 2
+      node_title: 'Scientists in the Field'
+      body: '<p class="usa-intro">Scientists in the Field</p>'
+      promote: 0
+      sticky: 0
+      created: 1444926360
+      changed: 1444926384
+    -
+      node_id: 3
+      node_title: 'Spruce and Peatland Responses Under Changing Environments'
+      body: '<p class="usa-intro">An experiment to assess the response of northern peatland ecosystems to increases in temperature and exposures to elevated atmospheric CO<sub>2</sub> concentrations.</p><p>The SPRUCE experiment is the primary component of the Terrestrial Ecosystem Science Scientific Focus Area of ORNL''s Climate Change Program, focused on terrestrial ecosystems and the mechanisms that underlie their responses to climatic change. The experimental work is to be conducted in a Picea mariana [black spruce] – Sphagnum spp. bog forest in northern Minnesota, 40 km north of Grand Rapids, in the USDA Forest Service Marcell Experimental Forest (MEF). The site is located at the southern margin of the boreal peatland forest. It is an ecosystem considered especially vulnerable to climate change, and anticipated to be near its tipping point with respect to climate change. Responses to warming and interactions with increased atmospheric CO2 concentration are anticipated to have important feedbacks on the atmosphere and climate, because of the high carbon stocks harbored by such ecosystems.</p><p>Experimental work in the 8.1-ha S1 bog will be a climate change manipulation focusing on the combined responses to multiple levels of warming at ambient or elevated CO2 (eCO2) levels. The experiment provides a platform for testing mechanisms controlling the vulnerability of organisms, biogeochemical processes and ecosystems to climatic change (e.g., thresholds for organism decline or mortality, limitations to regeneration, biogeochemical limitations to productivity, the cycling and release of CO2 and CH4 to the atmosphere).</p><p>The manipulation will evaluate the response of the existing biological communities to a range of warming levels from ambient to +9°C, provided via large, modified open-top chambers. The +0, +2.25, +4.5, +6.75 and +9°C warming treatments will also be conducted at eCO2. The eCO2 treatment will be imposed as +500 ppm above ambient reference plots with actual concentrations ranging from 800 to 900 ppm. Both direct and indirect effects of these experimental perturbations will be analyzed to develop and refine models needed for full Earth system analyses.</p>'
+      promote: 0
+      sticky: 0
+      created: 1444933109
+      changed: 1518437434
+  ids:
+    node_id:
+      type: integer
+process:
+  nid: node_id
+  vid: node_id
+  langcode:
+    -
+      plugin: default_value
+      default_value: en
+  title: node_title
+  uid:
+    -
+      plugin: default_value
+      default_value: 2
+  moderation_state:
+    -
+      plugin: default_value
+      default_value: published
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  field_page_body/value: body
+  field_page_body/format:
+    -
+      plugin: default_value
+      default_value: full_html
+destination:
+  plugin: 'entity:node'
+  default_bundle: page
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+  optional: {  }

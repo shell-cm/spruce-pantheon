@@ -1,0 +1,72 @@
+uuid: 90285b7b-37d5-4301-847e-59d606908e36
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_file_to_mediafile_audio
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Media
+migration_group: migrate_drupal_7
+label: '21 Files to Media - Audio'
+source:
+  plugin: d7_file
+  scheme: public
+  constants:
+    source_base_path: 'https://mnspruce.ornl.gov/'
+process:
+  bundle:
+    -
+      plugin: get
+      source: filemime
+    -
+      plugin: skip_on_value
+      method: row
+      not_equals: true
+      value: audio/mpeg
+    -
+      plugin: static_map
+      map:
+        audio/mpeg: audio
+      default_value: null
+  mid:
+    -
+      plugin: get
+      source: fid
+  vid:
+    -
+      plugin: get
+      source: fid
+  name:
+    -
+      plugin: get
+      source: filename
+  created:
+    -
+      plugin: get
+      source: timestamp
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  uid:
+    -
+      plugin: get
+      source: uid
+    -
+      plugin: default_value
+      default_value: 85
+  field_media_audio_file:
+    -
+      plugin: get
+      source: fid
+destination:
+  plugin: 'entity:media'
+migration_dependencies:
+  required:
+    - upgrade_d7_file_public_local
+    - upgrade_d7_file_404
+    - upgrade_d7_file_private
+  optional: {  }

@@ -1,0 +1,94 @@
+uuid: 0082f064-a367-42e7-8395-d9209912b725
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_file_to_mediafile_image
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Media
+migration_group: migrate_drupal_7
+label: '23 Files to Media - Image'
+source:
+  plugin: d7_file
+  scheme: public
+  constants:
+    source_base_path: 'https://mnspruce.ornl.gov/'
+process:
+  bundle:
+    -
+      plugin: get
+      source: filemime
+    -
+      plugin: skip_on_value
+      method: row
+      not_equals: true
+      value:
+        - image/gif
+        - image/jpeg
+        - image/png
+    -
+      plugin: static_map
+      map:
+        image/gif: image
+        image/jpeg: image
+        image/png: image
+      default_value: null
+  mid:
+    -
+      plugin: get
+      source: fid
+    -
+      plugin: skip_on_value
+      method: row
+      value:
+        - 1
+        - 2
+        - 513
+        - 512
+        - 515
+        - 517
+        - 996
+        - 997
+        - 1002
+        - 1148
+        - 1177
+        - 1294
+  vid:
+    -
+      plugin: get
+      source: fid
+  name:
+    -
+      plugin: get
+      source: filename
+  created:
+    -
+      plugin: get
+      source: timestamp
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  uid:
+    -
+      plugin: get
+      source: uid
+    -
+      plugin: default_value
+      default_value: 85
+  field_media_image:
+    -
+      plugin: get
+      source: fid
+destination:
+  plugin: 'entity:media'
+migration_dependencies:
+  required:
+    - upgrade_d7_file_public_local
+    - upgrade_d7_file_404
+    - upgrade_d7_file_private
+    - upgrade_d7_file_to_mediafile_image_slideshow
+  optional: {  }

@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="usa-accordion usa-accordion--bordered">
+  <h3 class="usa-accordion__heading">
+    <button type="button" aria-controls="{{- title -}}-content" aria-expanded="false" class="usa-accordion-button usa-accordion__button">{{ title }}</button>
+  </h3>
+  <div id="{{- title -}}-content" class="usa-accordion__content usa-prose">
+    {% for row in rows %}
+      {%
+        set row_classes = [
+          default_row_class ? 'views-row',
+        ]
+      %}
+      <article{{ row.attributes.addClass(row_classes) }}>
+        {{- row.content -}}
+      </article>
+    {% endfor %}
+  </div>
+</div>

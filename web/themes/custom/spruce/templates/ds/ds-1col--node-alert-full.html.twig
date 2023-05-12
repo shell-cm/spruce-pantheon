@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Display Suite 1 column template.
+ *
+ * Available variables:
+ * - ds_content_wrapper: wrapper around content
+ * - attributes: content region attributes
+ * - ds_content: content region
+ */
+#}
+{# <{{ ds_content_wrapper }}{{ attributes.addClass('ds-1col', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  {{ ds_content }}
+
+</{{ ds_content_wrapper }}> #}
+{%
+  set classes = [
+  'usa-alert',
+  content.field_slim['#items'].getString() ? 'usa-alert--slim',
+  content.field_no_icon['#items'].getString() ? 'usa-alert--no-icon'
+]
+%}
+
+{% set alert_status = content.field_alert_status['#items'].getString() %}
+{% set alert_status_class = [
+  'info' == alert_status ? 'usa-alert--info',
+  'warning' == alert_status ? 'usa-alert--warning',
+  'error' == alert_status ? 'usa-alert--error',
+  'success' == alert_status ? 'usa-alert--success'
+  ]
+%}
+
+{% set classes = classes|merge(alert_status_class) %}
+
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('usa-alert__body') }}>
+    <h4 class="usa-alert__heading">{{ content.field_alert_title }}</h4>
+    <div class="usa-alert__text">{{ content.field_alert_body }}</div>
+  </div>
+</article>

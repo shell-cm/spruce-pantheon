@@ -1,0 +1,126 @@
+uuid: eb658841-df9e-42e1-b3b3-93c02793186e
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_web_post
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '43 Node complete (Web Post to Dataset)'
+source:
+  plugin: d7_node_complete
+  node_type: web_post
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: static_map
+      source: language
+      map:
+        und: en
+      default_value: en
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  moderation_state:
+    -
+      plugin: static_map
+      source: status
+      map:
+        - draft
+        - published
+      default_value: draft
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  field_dataset_description:
+    -
+      plugin: get
+      source: body
+  field_dataset_media:
+    -
+      plugin: sub_process
+      source: field_image_webpost
+      process:
+        target_id: fid
+  field_dataset_download:
+    -
+      plugin: field_link
+      source: field_download_webpost
+  field_dataset_user_guide:
+    -
+      plugin: sub_process
+      source: field_files_webpost
+      process:
+        target_id: fid
+  field_dataset_image_files:
+    -
+      plugin: field_link
+      source: field_image_files_webpost
+  field_dataset_access:
+    -
+      plugin: sub_process
+      source: field_status_webpost
+      process:
+        target_id: tid
+  field_dataset_manual_rank:
+    -
+      plugin: get
+      source: field_manual_rank
+  field_dataset_citation:
+    -
+      plugin: get
+      source: field_citation
+  field_dataset_spruce_id:
+    -
+      plugin: get
+      source: field_spruce_id
+    -
+      plugin: default_value
+      default_value: spruce.000
+  field_dataset_image_caption:
+    -
+      plugin: get
+      source: field_image_caption
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: dataset
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_file_to_mediafile_image
+  optional: {  }

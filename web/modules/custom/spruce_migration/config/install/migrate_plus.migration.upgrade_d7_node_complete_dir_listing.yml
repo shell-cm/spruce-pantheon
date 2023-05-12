@@ -1,0 +1,66 @@
+uuid: d3340387-0220-4fbc-9be4-9d5c5ddc5cc4
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - filebrowser
+id: upgrade_d7_node_complete_dir_listing
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: directory_listing
+label: '101 Node complete (Directory listing) *Filebrowser problematic, run and reset 2x*'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      nid: 439
+      vid: 439
+      langcode: en
+      moderation_state: published
+      title: 'SPRUCE Aerial Photos'
+      uid: 2
+      created: 1445967834
+      changed: 1580141062
+      promote: 0
+      sticky: 0
+      field_directory_access: 4
+    -
+      nid: 577
+      vid: 577
+      langcode: en
+      moderation_state: published
+      title: 'Project Data'
+      uid: 2
+      created: 1453310634
+      changed: 1584036005
+      promote: 0
+      sticky: 0
+      field_directory_access: 5
+  ids:
+    nid:
+      type: integer
+process:
+  nid: nid
+  vid: vid
+  langcode: langcode
+  title: title
+  uid: uid
+  moderation_state: moderation_state
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  field_directory_access: field_directory_access
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: dir_listing
+migration_dependencies:
+  required:
+    - upgrade_d7_filebrowser
+  optional: {  }

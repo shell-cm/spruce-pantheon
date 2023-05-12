@@ -1,0 +1,197 @@
+/*
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+========================================
+========================================
+========================================
+----------------------------------------
+USWDS THEME CUSTOM STYLES
+----------------------------------------
+!! Copy this file to your project's
+   sass root. Don't edit the version
+   in node_modules.
+----------------------------------------
+Custom project SASS goes here.
+
+i.e.
+@include u-padding-right('05');
+----------------------------------------
+*/
+
+/**
+ * This file will be overwritten when the USWDS source files
+ * are compiled using the SASS CSS pre-processor.
+ */
+html {
+  line-height: 1.6;
+  // font-size: 18px;
+}
+
+.ornl-banner-section {
+  background-color: #007833;
+}
+
+.fit-cover {
+  object-fit: cover;
+}
+
+.display-grid {
+  display: grid;
+}
+
+.grid-areas-6 {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas: "blank logo logo text text text";
+}
+
+.area-blank {
+  grid-area: blank;
+}
+
+.area-logo {
+  grid-area: logo;
+}
+
+.area-text {
+  grid-area: text;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.align-center {
+  align-items: center;
+}
+
+// .spruce-banner {
+//   background: url(/themes/custom/spruce/images/abstractGreen.png) no-repeat;
+//   background-size: contain;
+//   background-position: center bottom;
+// }
+
+// @media (max-width: 1023px) {
+//   .spruce-banner {
+//     background-size: cover;
+//   }
+// }
+
+// @media (max-width: 767px) {
+//   .spruce-banner {
+//     background: transparent;
+//   }
+// }
+
+// .usa-menu-btn {
+//   background-color: #007833;
+// }
+
+fieldset {
+  border: 1px solid #dfe1e2;
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  background-color: #fdfdfd;
+}
+
+.fieldgroup {
+  padding: revert;
+  border-width: revert;
+}
+
+// @media (min-width: 64em) {
+//   .usa-nav__submenu,
+//   .usa-nav__primary button[aria-expanded="true"],
+//   .usa-megamenu.usa-nav__submenu::before,
+//   .usa-megamenu.usa-nav__submenu::after {
+//     background-color: #007833;
+//   }
+// }
+
+.citeproc-title {
+  font-weight: bolder;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+/**
+ * Responsive table cells.
+ */
+
+th.priority-low,
+th.priority-medium,
+td.priority-low,
+td.priority-medium {
+  display: none;
+}
+
+@media screen and (min-width: 38em) {
+  th.priority-medium,
+  td.priority-medium {
+    display: table-cell;
+  }
+}
+
+@media screen and (min-width: 60em) {
+  th.priority-low,
+  td.priority-low {
+    display: table-cell;
+  }
+}
+
+.tabledrag-toggle-weight-wrapper {
+  margin-top: 1.5rem;
+  line-height: 1.75rem;
+}
+
+.tabledrag-toggle-weight-wrapper + table,
+.tabledrag-toggle-weight-wrapper + .tableresponsive-toggle-columns + table {
+  margin-top: 0;
+}
+
+.usa-alert__text a:visited,
+.usa-footer__return-to-top a:visited,
+.usa-footer__nav a:visited,
+.usa-link:visited,
+main a:visited {
+  color: #005726;
+}
+
+.bg-primary a:visited {
+  color: #dfe1e2;
+}
+
+.erd-list--gallery {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.erd-list--gallery > * {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.usa-hero {
+  background-image: revert;
+  background-position: revert;
+  background-size: revert;
+}
+
+.slick--skin--fullwidth .slide__title {
+  color: white;
+  text-shadow: 2px 2px 10px black;
+}
+
+@media screen and (min-width: 30em) {
+  .usa-form--large {
+    max-width: revert;
+  }
+}
+
+.form-no-label {
+  margin-top: auto;
+}

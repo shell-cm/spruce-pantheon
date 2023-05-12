@@ -1,0 +1,62 @@
+uuid: 2783ec7b-f0e2-4be5-9db7-c635d20dcc8d
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_biblio_to_redirect
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '39 Node complete (Biblio to Redirect)'
+source:
+  plugin: bibcite_reference
+  constants:
+    PSF_TYPE: redirect
+    PSF_SCHEME: 'internal:/'
+    PSF_NODE: node
+    PSF_PATH: bibcite/reference/
+process:
+  rid:
+    -
+      plugin: get
+      source: nid
+  type:
+    -
+      plugin: get
+      source: constants/PSF_TYPE
+  langcode:
+    -
+      plugin: default_value
+      default_value: en
+  uid:
+    -
+      plugin: default_value
+      default_value: 17
+  redirect_source/path:
+    -
+      plugin: concat
+      source:
+        - constants/PSF_NODE
+        - nid
+      delimiter: /
+  redirect_redirect/uri:
+    -
+      plugin: concat
+      source:
+        - constants/PSF_SCHEME
+        - constants/PSF_PATH
+        - nid
+  status_code:
+    -
+      plugin: default_value
+      default_value: 301
+destination:
+  plugin: 'entity:redirect'
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_bibcite_migrate_reference
+  optional: {  }

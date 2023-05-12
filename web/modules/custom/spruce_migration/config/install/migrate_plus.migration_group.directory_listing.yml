@@ -1,0 +1,10 @@
+uuid: 111a61ee-3363-4260-8ac1-c7b71f8e6960
+langcode: en
+status: true
+dependencies: {  }
+id: directory_listing
+label: 'Directory Listing'
+description: 'Filebrowser directory listings'
+source_type: 'Drupal 7'
+module: null
+shared_configuration: null

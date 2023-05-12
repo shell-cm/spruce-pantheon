@@ -1,0 +1,220 @@
+/* TODO:
+ * Add a way to change the flag breakpoint as a modifier/class?
+ */
+
+@mixin card-inner-radius {
+  border-top-left-radius: calc(
+    #{radius($theme-card-border-radius)} - #{units($theme-card-border-width)}
+  );
+  border-top-right-radius: calc(
+    #{radius($theme-card-border-radius)} - #{units($theme-card-border-width)}
+  );
+}
+
+@include override-prose {
+  .featured-card-group {
+    @include add-list-reset;
+  }
+}
+
+.featured-card-group {
+  @include u-display("flex");
+  @include u-flex("column", "wrap", "align-stretch");
+  @include u-margin-x($theme-card-gap / -2);
+  @include at-media($theme-card-flag-min-width) {
+    @include u-flex("row");
+  }
+}
+
+@include override-prose {
+  .featured-card {
+    @include u-margin-bottom($theme-card-margin-bottom + 1);
+    @include u-maxw("none"); // override prose scope
+    &:last-child {
+      @include u-margin-bottom(
+          $theme-card-margin-bottom + 1
+      ); // override prose scope
+    }
+    @include at-media("tablet") {
+      @include u-margin-bottom($theme-card-margin-bottom);
+      &:last-child {
+        @include u-margin-bottom(
+            $theme-card-margin-bottom
+        ); // override prose scope
+      }
+    }
+  }
+}
+
+.featured-card {
+  a {
+    color: $theme-color-ornl-primary;
+    text-decoration: none;
+    /*@include u-display("flex");*/
+    @include u-height("full");
+    /*@include u-flex("column");*/
+    display: block;
+    /* @include u-position("relative");*/
+
+
+
+    &:hover {
+      //@include u-shadow(4);
+      text-decoration: none;
+
+      h2.featured-card__heading {
+        text-decoration: underline;
+      }
+
+      .featured-card__container {
+        @include u-shadow(5);
+      }
+
+    }
+
+    &:focus {
+      outline-offset: 0;
+    }
+
+  }
+
+  p {
+    color: #0d1a12;
+  }
+
+}
+
+.featured-card__container {
+  @include border-box-sizing;
+  @include typeset;
+  @include u-bg("white");
+  /*@include u-border($theme-card-border-width, $theme-card-border-color);*/
+  @include u-display("flex");
+  @include u-height("full");
+  @include u-flex("column");
+  @include u-margin-x($theme-card-gap / 1);
+  @include u-position("relative");
+  /*@include u-radius($theme-card-border-radius);*/
+  @include u-shadow(3);
+  transition: all 1s ease;
+
+  .fa-arrow-alt-circle-right {
+    font-size: 24px;
+  }
+}
+
+/*.featured-card:not(.usa-card--flag) .featured-card__container > :only-child {
+  @include u-padding($theme-card-padding-perimeter);
+}*/
+
+.featured-card .featured-card__img {
+  @include u-display("block");
+}
+
+
+
+// Header
+// ---------------------------------
+.featured-card__header {
+  @include u-padding-bottom($theme-card-padding-y / 2);
+  @include u-padding-top($theme-card-padding-perimeter);
+  @include u-padding-x($theme-card-padding-perimeter);
+
+  &:last-child {
+    @include u-padding-bottom($theme-card-padding-perimeter);
+  }
+}
+
+.featured-card__heading {
+  @include typeset($theme-card-header-typeset);
+  @include u-margin(0);
+}
+
+// Media
+// ---------------------------------
+.featured-card__media {
+  @include u-order("first");
+  // IE 11
+  // http://github.com/philipwalton/flexbugs/issues/75
+  min-height: 1px;
+}
+
+.featured-card__img {
+  /*@include card-inner-radius;*/
+  @include u-bg("base-lightest");
+  @include u-position("relative");
+  overflow: hidden;
+
+  img {
+    @include u-display("block");
+    @include u-height("full");
+    @include u-width("full");
+    object-fit: cover;
+  }
+}
+
+.featured-card__media--inset {
+  @include u-padding-top($theme-card-padding-perimeter);
+  @include u-padding-x($theme-card-padding-perimeter);
+
+  .featured-card__img {
+    @include u-radius(0);
+  }
+}
+
+// Body
+// ---------------------------------
+.featured-card__body {
+  @include u-flex("fill");
+  @include u-padding-x($theme-card-padding-perimeter);
+  padding-bottom: units(6);
+  // IE 11
+  flex-basis: auto;
+
+  // adjust spacing if body lack siblings
+  &:last-child {
+    @include u-padding-bottom($theme-card-padding-perimeter);
+  }
+
+  &:first-child {
+    @include u-padding-top($theme-card-padding-perimeter);
+  }
+
+  &:only-child {
+    @include u-padding-y($theme-card-padding-perimeter);
+  }
+}
+
+// Footer
+// ---------------------------------
+.featured-card__footer {
+  /*@include u-padding-bottom($theme-card-padding-perimeter);
+  @include u-padding-top($theme-card-padding-y / 2);
+  @include u-padding-x($theme-card-padding-perimeter);*/
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+}
+
+.featured-card__footer .featured-button:only-of-type {
+  @include u-margin-right(0);
+}
+
+.featured-card__header,
+.featured-card__body {
+  // strip spacing from first and last content
+  > :last-child {
+    @include u-padding-bottom(0);
+    @include u-margin-bottom(0);
+  }
+
+  > :first-child {
+    @include u-margin-top(0);
+    @include u-padding-top(0);
+  }
+
+  > :only-child {
+    @include u-margin-y(0);
+    @include u-padding-y(0);
+  }
+}

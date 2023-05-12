@@ -1,0 +1,56 @@
+uuid: 35a6bd6d-fe75-42f0-b9f2-6049de34f31a
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - migrate_drupal
+      - migrate_tools
+      - paragraphs
+id: upgrade_d7_field_collection_pres_mtg
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Paragraphs
+migration_group: migrate_drupal_7
+label: '31 D7 Field Collection to Paragraphs - Presenters / Meeting'
+source:
+  plugin: d7_field_collection_item
+  field_name: field_pres_mtg
+process:
+  field_presentation_title:
+    -
+      plugin: sub_process
+      source: field_title_pres
+      process:
+        value: value
+        entity_id: entity_id
+        revision_id: revision_id
+  field_presentation_presenter:
+    -
+      plugin: sub_process
+      source: field_presenter_pres
+      process:
+        value: value
+        entity_id: entity_id
+        revision_id: revision_id
+  field_presentation_media:
+    -
+      plugin: sub_process
+      source: field_files_pres
+      process:
+        target_id: fid
+        entity_id: entity_id
+        revision_id: revision_id
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: presentation
+migration_dependencies:
+  required:
+    - upgrade_d7_file_to_mediafile_document
+    - upgrade_d7_file_to_mediafile_image
+    - upgrade_d7_file_to_mediafile_video
+    - upgrade_d7_file_to_mediafile_audio
+  optional: {  }

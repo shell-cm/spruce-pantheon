@@ -1,0 +1,40 @@
+uuid: 89fc1402-2d56-4ec1-a0e6-50c59fa21db5
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_file_to_mediafile_image_slideshow
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Media
+migration_group: migrate_drupal_7
+label: '19 Files to Media - Image Slideshow'
+source:
+  plugin: csv
+  path: modules/custom/spruce_migration/spruce_migration_csv_source/sources/slideshow.csv
+  ids:
+    - fid
+process:
+  mid: fid
+  vid: fid
+  name: filename
+  status: status
+  created: timestamp
+  changed: timestamp
+  uid: uid
+  field_media_image/target_id: fid
+  field_media_image/alt: title
+  field_media_slideshow_title: title
+  field_media_slideshow_link/uri: field_link_ss
+  field_media_slideshow_link/title: link_title
+destination:
+  plugin: 'entity:media'
+  default_bundle: image
+migration_dependencies:
+  required:
+    - upgrade_d7_file_public_local
+    - upgrade_d7_file_404
+    - upgrade_d7_file_private
+  optional: {  }

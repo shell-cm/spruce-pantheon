@@ -1,0 +1,103 @@
+uuid: e8d95108-f302-467c-ba9d-1c6b2ff6b865
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_web_resource
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '45 Node complete (Web Resource)'
+source:
+  plugin: d7_node_complete
+  node_type: web_resource
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: static_map
+      source: language
+      map:
+        und: en
+      default_value: en
+  field_migration_text_plain_1:
+    -
+      plugin: get
+      source: title
+  title:
+    -
+      plugin: callback
+      callable: strtolower
+      source: title
+    -
+      plugin: callback
+      callable: ucwords
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  moderation_state:
+    -
+      plugin: static_map
+      source: status
+      map:
+        - draft
+        - published
+      default_value: draft
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  field_site_summary:
+    -
+      plugin: get
+      source: body
+  field_site_link:
+    -
+      plugin: field_link
+      source: field_link
+  field_site_image:
+    -
+      plugin: sub_process
+      source: field_image_web
+      process:
+        target_id: fid
+  field_site_relevance:
+    -
+      plugin: get
+      source: field_relevance_web
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: site
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_file_to_mediafile_image
+  optional: {  }

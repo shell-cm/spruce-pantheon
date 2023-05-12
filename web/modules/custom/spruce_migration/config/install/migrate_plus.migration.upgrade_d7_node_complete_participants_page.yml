@@ -1,0 +1,89 @@
+uuid: c6b8a462-8e7b-4dad-8df5-68f32dfb04b9
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_participants_page
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '53 Node complete (Participants Page)'
+source:
+  plugin: csv
+  path: modules/custom/spruce_migration/spruce_migration_csv_source/sources/participant.csv
+  ids:
+    - id
+process:
+  langcode:
+    -
+      plugin: default_value
+      default_value: en
+  title: title
+  uid:
+    -
+      plugin: default_value
+      default_value: 2
+  moderation_state:
+    -
+      plugin: default_value
+      default_value: published
+  created:
+    -
+      plugin: default_value
+      default_value: 1446210830
+  changed:
+    -
+      plugin: default_value
+      default_value: 1626453837
+  field_participant_email:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_participant_email
+  field_participant_profile:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_participant_profile
+  field_participant_category:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_participant_category
+  field_participant_organization:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_participant_organization
+  field_participant_contributor:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_participant_contributor
+  field_participant_title: field_participant_title
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: participant
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_taxonomy_vocabulary
+    - upgrade_d7_taxonomy_terms
+    - upgrade_d7_node_complete_node_gallery_gallery
+    - upgrade_d7_node_complete_node_slideshow
+    - upgrade_d7_node_complete_meeting
+    - upgrade_d7_node_complete_biblio
+    - upgrade_d7_node_complete_news_item
+    - upgrade_d7_node_complete_web_post
+    - upgrade_d7_node_complete_web_resource
+    - upgrade_d7_node_complete_page
+    - upgrade_d7_node_complete_one_column_page
+  optional: {  }

@@ -1,0 +1,99 @@
+uuid: 770e1598-9dab-4fc5-a03e-c8014b05649d
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_one_column_page
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '49 Node complete (One Column Page)'
+source:
+  plugin: d7_node_complete
+  node_type: one_column_page
+process:
+  nid:
+    -
+      plugin: skip_on_value
+      source: tnid
+      method: row
+      value:
+        - 667
+    -
+      plugin: get
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: static_map
+      source: language
+      map:
+        und: en
+      default_value: en
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  moderation_state:
+    -
+      plugin: static_map
+      source: status
+      map:
+        - draft
+        - published
+      default_value: draft
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  field_page_body:
+    -
+      plugin: sub_process
+      source: body
+      process:
+        value: value
+        format: format
+  field_migration_file_1:
+    -
+      plugin: sub_process
+      source: field_file_upload
+      process:
+        target_id: fid
+        display: display
+        description: description
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: page
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_file_public_local
+    - upgrade_d7_file_404
+    - upgrade_d7_file_private
+  optional: {  }

@@ -1,0 +1,61 @@
+uuid: a002f8d6-f56c-4012-9083-7546c3ba9f0f
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_node_slideshow
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '29 Node complete (Slideshow)'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      item: 1
+      nid: 461
+      title: 'Front page slideshow'
+      uid: 17
+      promote: 1
+      sticky: 1
+      field_slideshow_image:
+        - 513
+        - 512
+        - 515
+        - 517
+        - 996
+        - 997
+        - 1002
+        - 1148
+        - 1177
+        - 1294
+  ids:
+    item:
+      type: integer
+process:
+  nid: nid
+  vid: nid
+  langcode:
+    -
+      plugin: default_value
+      default_value: en
+  title: title
+  uid: uid
+  moderation_state:
+    -
+      plugin: default_value
+      default_value: published
+  promote: promote
+  sticky: sticky
+  field_slideshow_image: field_slideshow_image
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: slideshow
+migration_dependencies:
+  required:
+    - upgrade_d7_file_to_mediafile_image_slideshow
+  optional: {  }

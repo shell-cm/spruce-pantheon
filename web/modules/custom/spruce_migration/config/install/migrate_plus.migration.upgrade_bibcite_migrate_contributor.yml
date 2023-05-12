@@ -1,0 +1,52 @@
+uuid: b6da31d8-db32-4e3e-91fe-c8768986423e
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_bibcite_migrate_contributor
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: '1 Bibcite Contributor'
+source:
+  plugin: bibcite_contributor
+process:
+  id:
+    -
+      plugin: get
+      source: cid
+  leading_title:
+    -
+      plugin: get
+      source: prefix
+  first_name:
+    -
+      plugin: get
+      source: firstname
+  middle_name:
+    -
+      plugin: get
+      source: initials
+  last_name:
+    -
+      plugin: get
+      source: lastname
+  nick:
+    -
+      plugin: get
+      source: name
+  suffix:
+    -
+      plugin: get
+      source: suffix
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity:bibcite_contributor'
+migration_dependencies:
+  optional: {  }
+  required: {  }

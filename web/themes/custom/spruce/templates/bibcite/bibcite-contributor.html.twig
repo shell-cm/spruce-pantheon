@@ -1,0 +1,27 @@
+{#
+/**
+ * @file bibcite_contributor.html.twig
+ * Default theme implementation to present Contributor data.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_bibcite_contributor()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'bibcite_contributor',
+    'grid-row',
+    'flex-justify-start',
+    'margin-y-2',
+  ]
+%}
+{# <div{{ attributes.addClass(classes) }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div> #}

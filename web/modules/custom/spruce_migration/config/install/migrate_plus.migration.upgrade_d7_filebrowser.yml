@@ -1,0 +1,40 @@
+uuid: 1a429ec3-ea73-4cd2-99a4-26ba8d7103e5
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - filebrowser
+id: upgrade_d7_filebrowser
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: directory_listing
+label: '99 Filebrowser'
+source:
+  plugin: csv
+  path: modules/custom/spruce_migration/spruce_migration_csv_source/sources/filebrowser.csv
+  ids:
+    - nid
+process:
+  nid: nid
+  folder_path: folder_path
+  properties: properties
+destination:
+  plugin: table
+  database_key: default
+  table_name: filebrowser_nodes
+  batch_size: 3
+  id_fields:
+    nid:
+      type: integer
+  fields:
+    nid: nid
+    folder_path: folder_path
+    properties: properties
+migration_dependencies:
+  required: {  }
+  optional: {  }

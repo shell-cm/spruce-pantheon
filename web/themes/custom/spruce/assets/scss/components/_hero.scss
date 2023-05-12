@@ -1,0 +1,43 @@
+// Hero feature
+// ==========================
+
+.usa-hero {
+  @include border-box-sizing;
+  @include typeset;
+  @include u-padding-y($theme-site-margins-width);
+  /*background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.7)), url($theme-hero-image);*/
+  /*background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+  min-height: 350px;
+  color: color("white");
+}
+
+.usa-hero__callout {
+  //background-color: color("primary-darker");
+  //padding: units(4);
+  text-align: center;
+
+  /*@include at-media("tablet") {
+    max-width: units("mobile");
+  }*/
+  h2 {
+    font-size: 3.2em;
+    color: color("white");
+  }
+}
+
+.usa-hero__heading {
+  @include typeset-h2;
+  color: color("accent-cool");
+  line-height: line-height("heading", 2);
+}
+
+.usa-hero__heading--alt {
+  color: color("white");
+  display: block;
+}

@@ -1,0 +1,34 @@
+type: theme
+base theme: uswds_base
+
+name: "SPRUCE"
+description: Uses the <a href="https://www.drupal.org/project/uswds_base">USWDS Base</a> theme, implementing the <a href="https://designsystem.digital.gov/">U.S. Web Design System (USWDS)</a>.
+package: "USWDS Base"
+core: 8.x
+core_version_requirement: ^8 || ^9
+logo: "logo.png"
+screenshot: "screenshot.png"
+
+regions:
+  header_top: "Above Header"
+  header: "Header"
+  primary_menu: "Primary Menu"
+  secondary_menu: "Secondary Menu"
+  sidebar_first: "First sidebar"
+  sidebar_second: "Second sidebar"
+  breadcrumb: "Breadcrumb"
+  highlighted: "Highlighted"
+  help: "Help"
+  hero: "Hero"
+  carousel: "Carousel"
+  content: "Content"
+  footer_menu: "Footer Menu"
+  footer: "Primary Footer"
+  footer_secondary: "Secondary Footer"
+
+libraries:
+  - "spruce/assets"
+
+libraries-override:
+  miniorange_saml/miniorange_saml.admin: false
+  paragraphs/drupal.paragraphs.unpublished: false

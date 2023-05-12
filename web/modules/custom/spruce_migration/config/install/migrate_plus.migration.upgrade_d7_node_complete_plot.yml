@@ -1,0 +1,122 @@
+uuid: d1c362d7-0317-4159-99ae-188bab2eed68
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_plot
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '57 Node complete (Plot)'
+source:
+  plugin: csv
+  path: modules/custom/spruce_migration/spruce_migration_csv_source/sources/plot.csv
+  ids:
+    - field_plot_number
+  constants:
+    PSF_CAMERA_0_TITLE: 'Plot camera'
+    PSF_CAMERA_1_TITLE: 'Shrub camera'
+    PSF_PLOT_TITLE: Plot
+process:
+  langcode:
+    -
+      plugin: default_value
+      default_value: en
+  uid:
+    -
+      plugin: default_value
+      default_value: 17
+  moderation_state:
+    -
+      plugin: default_value
+      default_value: published
+  created:
+    -
+      plugin: default_value
+      default_value: 1524168876
+  changed:
+    -
+      plugin: default_value
+      default_value: 1541776626
+  field_plot_gallery/target_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_gallery
+  field_plot_camera/0/uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_camera_0_uri
+  field_plot_camera/0/title:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_camera_0_uri
+    -
+      plugin: get
+      source: constants/PSF_CAMERA_0_TITLE
+  field_plot_camera/1/uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_camera_1_uri
+  field_plot_camera/1/title:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_camera_1_uri
+    -
+      plugin: get
+      source: constants/PSF_CAMERA_1_TITLE
+  field_plot_co2:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_co2
+  field_plot_number:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_number
+  field_plot_temperature:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_temperature
+  title:
+    -
+      plugin: concat
+      source:
+        - constants/PSF_PLOT_TITLE
+        - field_plot_number
+      delimiter: ' '
+  field_plot_enclosure:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_plot_enclosure
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: plot
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_complete_node_gallery_gallery
+    - upgrade_d7_node_complete_node_slideshow
+    - upgrade_d7_node_complete_meeting
+    - upgrade_d7_node_complete_biblio
+    - upgrade_d7_node_complete_news_item
+    - upgrade_d7_node_complete_web_post
+    - upgrade_d7_node_complete_web_resource
+    - upgrade_d7_node_complete_page
+    - upgrade_d7_node_complete_one_column_page
+  optional: {  }

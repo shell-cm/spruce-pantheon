@@ -1,0 +1,151 @@
+uuid: 6345b10b-4c25-4dd2-83e0-b4829b03d2eb
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_file_public_local
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+  - Media
+migration_group: migrate_drupal_7
+label: '13 Files - Public local'
+source:
+  plugin: d7_file
+  scheme: public
+  constants:
+    PSF_SOURCE_FILE_PATH: sites/default/files/migrate/
+    PSF_FILE_SCHEME: 'public:/'
+    PSF_FILE_DELIMITER: /
+process:
+  fid:
+    -
+      plugin: skip_on_value
+      source: fid
+      method: row
+      value:
+        - 2134
+    -
+      plugin: get
+      source: fid
+  psf_source_filemime:
+    -
+      plugin: get
+      source: filemime
+  psf_source_uri_get:
+    -
+      plugin: get
+      source: uri
+  psf_source_uri_scheme_explode:
+    -
+      plugin: explode
+      source: '@psf_source_uri_get'
+      delimiter: '://'
+      strict: false
+  psf_source_uri_no_scheme:
+    -
+      plugin: array_pop
+      source: '@psf_source_uri_scheme_explode'
+  psf_source_folder_explode:
+    -
+      plugin: explode
+      source: '@psf_source_uri_no_scheme'
+      delimiter: /
+      limit: -1
+      strict: false
+  psf_source_folder_plain:
+    -
+      plugin: array_shift
+      source: '@psf_source_folder_explode'
+  psf_source_folder:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: '@psf_source_folder_plain'
+    -
+      plugin: concat
+      source:
+        - '@psf_source_folder_plain'
+        - constants/PSF_FILE_DELIMITER
+  psf_source_filename:
+    -
+      plugin: callback
+      callable: basename
+      source: '@psf_source_uri_get'
+  psf_source_folder_filename:
+    -
+      plugin: concat
+      source:
+        - '@psf_source_folder'
+        - '@psf_source_filename'
+  psf_source_download_source:
+    -
+      plugin: concat
+      source:
+        - constants/PSF_SOURCE_FILE_PATH
+        - '@psf_source_folder_filename'
+  psf_destination_filename:
+    -
+      plugin: callback
+      callable: basename
+      source: '@psf_source_uri_get'
+    -
+      plugin: skip_on_empty
+      method: row
+      message: 'Cannot import empty filename.'
+  psf_destination_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/PSF_FILE_SCHEME
+        - '@psf_source_filemime'
+        - '@psf_destination_filename'
+  uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: '@psf_source_uri_get'
+    -
+      plugin: file_copy
+      source:
+        - '@psf_source_download_source'
+        - '@psf_destination_path'
+      file_exists: 'use existing'
+      move: false
+  filename:
+    -
+      plugin: get
+      source: filename
+  filemime:
+    -
+      plugin: get
+      source: filemime
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: timestamp
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  uid:
+    -
+      plugin: get
+      source: uid
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity:file'
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+  optional: {  }

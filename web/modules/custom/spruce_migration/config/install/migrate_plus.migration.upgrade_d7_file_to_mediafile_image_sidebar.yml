@@ -1,0 +1,52 @@
+uuid: 87a5403e-4d7f-4e60-aab7-4605c1eedd83
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_file_to_mediafile_image_sidebar
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Media
+migration_group: migrate_drupal_7
+label: '17 Files to Media - Image Sidebar Slide'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      fid: 1
+      filename: S1Aerial102009.jpg
+      timestamp: 1444925281
+      title: 'Aerial Shot'
+      status: 1
+      uid: 2
+    -
+      fid: 2
+      filename: scientists-in-field.jpg
+      timestamp: 1444926360
+      title: 'Scientists in the field'
+      status: 1
+      uid: 2
+  ids:
+    fid:
+      type: integer
+process:
+  mid: fid
+  vid: fid
+  name: filename
+  status: status
+  created: timestamp
+  changed: timestamp
+  uid: uid
+  field_media_image/target_id: fid
+  field_media_image/alt: title
+destination:
+  plugin: 'entity:media'
+  default_bundle: image
+migration_dependencies:
+  required:
+    - upgrade_d7_file_public_local
+    - upgrade_d7_file_404
+    - upgrade_d7_file_private
+  optional: {  }

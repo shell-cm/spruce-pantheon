@@ -1,0 +1,17 @@
+.more-link {
+
+  a {
+    color: $theme-color-ornl-primary;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  i {
+    color: $theme-color-ornl-primary;
+    font-size: 14px;
+  }
+
+}

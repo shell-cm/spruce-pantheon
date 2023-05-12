@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="grid-container spruce-banner tablet-display-block display-none">
+  <div class="spruce-banner tablet-display-block display-none">
+    <div class="position-relative grid-row flex-align-center flex-justify-center">
+      <img src="/themes/custom/spruce/images/abstractGreen.png" class="width-viewport" role="presentation" width="980" />
+      <div class="width-45 position-absolute">
+        <div class="display-grid grid-areas-6 align-center gap-10" id="logo">
+          <div class="area-logo site-logo">
+            <img width="800" src="/themes/custom/spruce/images/logo.png" alt="{{ 'SPRUCE Logo'|t }}" class="border-05 border-primary radius-logo" />
+          </div>
+          <div class="area-text text-primary display-flex flex-column">
+            <div class="line-height-serif-2 font-serif-xs desktop-font-serif-lg">{{ site_slogan }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

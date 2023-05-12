@@ -1,0 +1,85 @@
+uuid: 896a820e-c506-4811-af0c-4072e4c427ca
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_complete_research_summary
+class: Drupal\node\Plugin\migrate\D7NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: '55 Node complete (Research Summary)'
+source:
+  plugin: csv
+  path: modules/custom/spruce_migration/spruce_migration_csv_source/sources/research_summary.csv
+  ids:
+    - id
+  constants:
+    PSF_TITLE_ELLIPSIS: ...
+process:
+  langcode:
+    -
+      plugin: default_value
+      default_value: en
+  psf_short_title:
+    -
+      plugin: substr
+      source: field_research_sum_description
+      length: 61
+  title:
+    -
+      plugin: concat
+      source:
+        - '@psf_short_title'
+        - constants/PSF_TITLE_ELLIPSIS
+  uid:
+    -
+      plugin: default_value
+      default_value: 17
+  moderation_state:
+    -
+      plugin: default_value
+      default_value: published
+  created:
+    -
+      plugin: default_value
+      default_value: 1503606425
+  changed:
+    -
+      plugin: default_value
+      default_value: 1545064704
+  field_research_sum_description:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_research_sum_description
+  field_research_summary_media:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_research_summary_media
+  field_research_summary_order: id
+  field_metatag:
+    -
+      plugin: d7_metatag_entities
+      source: pseudo_metatag_entities
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: research_summary
+migration_dependencies:
+  required:
+    - upgrade_d7_file_to_mediafile_document
+    - upgrade_d7_user
+    - upgrade_d7_node_complete_node_gallery_gallery
+    - upgrade_d7_node_complete_node_slideshow
+    - upgrade_d7_node_complete_meeting
+    - upgrade_d7_node_complete_biblio
+    - upgrade_d7_node_complete_news_item
+    - upgrade_d7_node_complete_web_post
+    - upgrade_d7_node_complete_web_resource
+    - upgrade_d7_node_complete_page
+    - upgrade_d7_node_complete_one_column_page
+  optional: {  }

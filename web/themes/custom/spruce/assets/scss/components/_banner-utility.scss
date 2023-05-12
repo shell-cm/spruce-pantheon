@@ -1,0 +1,52 @@
+/* Custom Utility Banner */
+
+.ornl-utility-banner {
+  @include typeset($theme-banner-font-family);
+  @include border-box-sizing;
+  background-color: $theme-color-ornl-primary;
+
+  @include at-media("tablet") {
+    font-size: font-size($theme-banner-font-family, "3xs");
+    padding-bottom: units(0);
+  }
+
+  @include at-media-max("tablet") {
+     display: none;
+   }
+
+  .usa-accordion {
+    @include typeset($theme-banner-font-family);
+  }
+
+}
+
+.ornl-utility-banner__inner {
+  @include add-responsive-site-margins;
+  @include grid-container($theme-banner-max-width);
+  @include grid-row;
+  @include u-flex("align-start");
+  padding-right: units(0);
+  padding-top: units(0);
+
+  @include at-media("tablet") {
+    @include u-flex("align-center");
+  }
+
+  img {
+    padding-top: units(0.5);
+  }
+}
+
+.ornl-utility-button__search {
+  color: color("white");
+  background: none;
+  border: none;
+  padding-left: units(4);
+
+  &:hover,
+  &:active {
+    z-index: 2;
+  }
+
+  cursor: pointer;
+}
