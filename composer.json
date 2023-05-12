@@ -44,7 +44,7 @@
         "drupal/entity": "^1.2",
         "drupal/entity_reference_display": "^1.4",
         "drupal/entityqueue": "^1.2",
-        "drupal/eva": "^2.1",
+        "drupal/eva": "^3",
         "drupal/field_group": "^3.1",
         "drupal/filebrowser": "^3.0",
         "drupal/filefield_paths": "^1.0@beta",
