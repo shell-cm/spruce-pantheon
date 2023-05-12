@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5dde523e85fbdba2aa76168048765da",
+    "content-hash": "568a148a4e8708cb1ffae840bcbe713a",
     "packages": [
         {
             "name": "academicpuma/citeproc-php",
@@ -12018,6 +12018,28 @@
                 "source": "https://github.com/Vardot/blazy/tree/master"
             },
             "time": "2017-07-16T11:19:13+00:00"
+        },
+        {
+            "name": "vardot/slick",
+            "version": "1.6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vardot/slick.git",
+                "reference": "069af9439c9d210351f35d215d2971ddf6ad2dac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vardot/slick/zipball/069af9439c9d210351f35d215d2971ddf6ad2dac",
+                "reference": "069af9439c9d210351f35d215d2971ddf6ad2dac",
+                "shasum": ""
+            },
+            "type": "drupal-library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "forked from kenwheeler/slick to be used as drupal-library",
+            "support": {
+                "source": "https://github.com/Vardot/slick/tree/1.6.0.1"
+            },
+            "time": "2017-07-16T11:15:45+00:00"
         },
         {
             "name": "webflo/drupal-finder",
