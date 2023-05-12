@@ -1,0 +1,81 @@
+name: mnspruce
+recipe: pantheon
+config:
+  composer_version: 1.10.19
+  webroot: web
+  framework: drupal8
+  site: mnspruce
+  id: 756a40aa-fe1e-43c2-a170-502aa3cec4d0
+  xdebug: true
+services:
+  appserver:
+    build:
+      - composer install
+    overrides:
+      environment:
+        DRUSH_OPTIONS_URI: 'https://mnspruce.lndo.site'
+  database:
+    portforward: 33997
+  node:
+    type: node
+    build:
+      - npm install
+events:
+  post-pull:
+    - appserver: drush upwd superadmin webworks
+    - appserver: drush cache-rebuild
+    - appserver: composer install
+tooling:
+  npm:
+    service: node
+  node:
+    service: node
+  gulp:
+    service: node
+  yarn:
+    service: node
+  watch:
+    service: node
+    cmd: cd /app/web/themes/custom/mnspruce/css/ && /app/node_modules/.bin/gulp watch
+  git:
+    service: appserver
+  pull:
+    options:
+      code:
+        default: none
+      files:
+        default: none
+  pull-live-db:
+    service: appserver
+    description: Pull the LIVE database from Pantheon
+    cmd: /helpers/pull.sh --code=none --database=live --files=none
+  push: disabled
+  update-core:
+    service: appserver
+    description: Updates Drupal Core and related projects
+    dir: /app
+    cmd:
+      - echo ">>>"
+      - >-
+        echo ">>> Executing 'composer update drupal/core-recommended
+        drupal/core-composer-scaffold --with-dependencies'"
+      - echo ">>>"
+      - >-
+        composer update drupal/core-recommended drupal/core-composer-scaffold
+        --with-dependencies
+      - echo ">>>"
+      - echo ">>> Executing 'drush updatedb -y'"
+      - echo ">>>"
+      - drush updatedb -y
+      - echo ">>>"
+      - echo ">>> Executing 'drush config-export -y'"
+      - echo ">>>"
+      - drush config-export -y
+      - echo ">>>"
+      - echo ">>> Executing 'composer build-assets'"
+      - echo ">>>"
+      - composer build-assets
+      - echo ">>>"
+      - echo ">>> Executing 'git status'"
+      - echo ">>>"
+      - git status
