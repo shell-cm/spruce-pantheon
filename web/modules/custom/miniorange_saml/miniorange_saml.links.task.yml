@@ -34,12 +34,6 @@ miniorange_saml.advance_settings:
     weight: 60
     base_route: miniorange_saml.customer_setup
 
-miniorange_saml.support:
-    route_name: miniorange_saml.support
-    title: 'Support'
-    weight: 70
-    base_route: miniorange_saml.customer_setup
-
 miniorange_saml.licensing:
   route_name: miniorange_saml.licensing
   title: 'Upgrade Plans'

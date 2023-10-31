@@ -49,14 +49,14 @@
 
 {% set uswds_classes = [] %}
 {% if content.field_uswds_classes %}
-  {% for key, class in content.field_uswds_classes if key|first != '#' %}
+  {% for key, class in content.field_uswds_classes | filter((value, key) => key|first != '#') %}
     {% set uswds_classes = uswds_classes|merge([class['#title']]) %}
   {% endfor %}
 {% endif %}
 
 <div{{ attributes.addClass(classes).addClass(uswds_classes) }}>
   <ul class="usa-card-group">
-    {% for key, item in content.field_cards if key|first != '#' %}
+    {% for key, item in content.field_cards | filter((value, key) => key|first != '#') %}
       {% set header_first = item['#paragraph'].field_title_first.value ? ' usa-card--header-first' %}
       {% set card_link = item['#paragraph'].field_make_card_link.value ?  true : false %}
       {% set columns = item['#paragraph'].field_number_of_columns.value ? item['#paragraph'].field_number_of_columns.value : '4' %}

@@ -52,7 +52,7 @@
 
 <div{{ attributes.addClass(classes) }} aria-multiselectable="{{ multiselect }}">
   <!-- Use the accurate heading level to maintain the document outline -->
-  {% for key, item in content.field_accordion_section if key|first != '#' %}
+  {% for key, item in content.field_accordion_section | filter((value, key) => key|first != '#') %}
     {% set id = 'a' ~ key %}
     <h2 class="usa-accordion__heading">
       <button class="usa-accordion__button"

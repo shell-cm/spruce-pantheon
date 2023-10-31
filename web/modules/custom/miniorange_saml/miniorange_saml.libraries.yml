@@ -17,7 +17,6 @@ miniorange_saml.admin:
   version: VERSION
   css:
     layout:
-      css/miniorange_saml.admin.css: {}
       css/miniorange_saml.module.css: {}
   dependencies:
     - core/jquery

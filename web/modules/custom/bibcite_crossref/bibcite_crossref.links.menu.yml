@@ -1,0 +1,10 @@
+bibcite_crossref.lookup:
+  title: 'DOI lookup'
+  parent: entity.bibcite_reference.collection
+  route_name: bibcite_crossref.lookup
+  weight: 42
+bibcite_crossref.settings:
+  title: 'Crossref'
+  parent: bibcite.settings
+  route_name: bibcite_crossref.settings
+  weight: 20

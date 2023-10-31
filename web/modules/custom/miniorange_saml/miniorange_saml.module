@@ -2,94 +2,84 @@
 
 
 use Drupal\Component\Utility\Url;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\miniorange_saml\Utilities;
 use Drupal\miniorange_saml\MiniorangeSAMLConstants;
 use Drupal\miniorange_saml\Controller\miniorange_samlController;
-function miniorange_saml_page_attachments(array &$sF)
+function miniorange_saml_page_attachments(array &$Hq)
 {
-    $sF["\43\x61\x74\164\141\x63\x68\x65\144"]["\x6c\151\142\162\141\162\171"][] = "\x6d\x69\156\x69\157\x72\x61\156\147\x65\x5f\x73\x61\155\x6c\57\155\151\156\151\x6f\x72\x61\156\147\145\x5f\x73\x61\x6d\154\x2e\141\x64\155\x69\156";
+    $Hq["\43\141\164\164\x61\x63\x68\145\x64"]["\154\x69\x62\162\141\162\x79"][] = "\155\151\156\x69\157\x72\x61\156\147\145\x5f\x73\x61\155\154\x2f\x6d\x69\156\151\157\x72\x61\x6e\x67\x65\x5f\163\x61\155\x6c\x2e\141\x64\155\x69\x6e";
 }
-function miniorange_saml_update_projects_alter(&$CN)
+function miniorange_saml_update_projects_alter(&$EJ)
 {
-    $y8 = \Drupal::config("\155\151\x6e\151\x6f\162\x61\x6e\147\145\137\x73\141\x6d\x6c\x2e\x73\145\164\x74\151\x6e\x67\x73");
-    $V8 = $y8->get("\x6d\151\156\x69\x6f\x72\141\x6e\x67\145\x5f\163\141\x6d\154\137\165\160\147\x72\141\x64\145\x5f\165\162\154");
-    if (is_null($V8)) {
-        goto HY;
+    $f5 = \Drupal::config("\x6d\151\x6e\x69\157\x72\141\156\147\145\x5f\163\141\x6d\154\56\x73\145\164\x74\x69\x6e\147\x73");
+    $ZR = $f5->get("\155\x69\156\x69\x6f\162\141\x6e\147\x65\137\x73\x61\155\x6c\x5f\x75\160\x67\162\x61\x64\x65\x5f\x75\x72\x6c");
+    if (is_null($ZR)) {
+        goto QL;
     }
-    $CN["\155\151\x6e\151\x6f\x72\141\156\x67\x65\137\x73\x61\155\x6c"]["\x69\156\146\157"]["\160\162\157\152\145\x63\164\x20\x73\164\x61\x74\x75\163\x20\165\162\x6c"] = $V8;
-    goto gf;
-    HY:
-    unset($CN["\155\151\156\x69\x6f\x72\x61\x6e\147\x65\x5f\x73\x61\x6d\x6c"]);
-    gf:
+    $EJ["\x6d\x69\156\x69\x6f\x72\141\x6e\x67\x65\137\163\141\x6d\x6c"]["\151\x6e\x66\x6f"]["\x70\x72\x6f\x6a\x65\x63\164\40\163\164\x61\164\165\163\40\165\162\x6c"] = $ZR;
+    goto ig;
+    QL:
+    unset($EJ["\x6d\x69\x6e\151\x6f\x72\141\x6e\147\x65\x5f\x73\x61\x6d\154"]);
+    ig:
 }
-function miniorange_saml_form_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $pK)
+function miniorange_saml_form_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $UW)
 {
-    $y8 = \Drupal::config("\x6d\x69\156\151\157\x72\141\156\x67\x65\x5f\x73\141\x6d\x6c\x2e\163\145\164\164\x69\x6e\x67\163");
-    $h0 = $y8->get("\155\151\x6e\151\157\162\141\x6e\x67\x65\137\163\x61\x6d\x6c\x5f\146\157\162\x63\145\137\x61\x75\164\x68");
-    $Px = $y8->get("\x6d\x69\156\x69\x6f\x72\x61\x6e\x67\x65\x5f\163\x61\155\x6c\x5f\x61\165\x74\157\137\x72\145\144\151\x72\145\143\164\137\164\x6f\137\151\x64\x70");
-    $M8 = $y8->get("\x6d\x69\156\x69\157\x72\141\x6e\147\145\x5f\163\x61\x6d\154\137\x65\x6e\141\142\x6c\145\x5f\142\141\x63\153\x64\157\157\162");
-    $S5 = $y8->get("\155\x69\x6e\x69\157\x72\x61\x6e\x67\x65\x5f\163\141\155\154\x5f\145\156\x61\x62\154\145\x5f\x6c\157\x67\151\x6e");
-    $D5 = $y8->get("\155\x69\x6e\x69\x6f\162\x61\x6e\147\x65\x5f\142\141\x63\153\144\157\x6f\162\137\x71\165\145\x72\171");
-    $qh = \Drupal::config("\x6d\x69\x6e\151\157\x72\x61\x6e\x67\x65\x5f\163\141\x6d\154\56\x73\x65\164\164\151\156\147\163")->get("\155\151\x6e\x69\157\x72\x61\156\147\145\137\155\141\x69\156\x74\x65\x6e\141\x6e\143\145\137\x65\170\x70\x69\x72\x79");
-    $nT = \Drupal::config("\155\151\156\151\x6f\x72\141\x6e\147\x65\x5f\x73\x61\x6d\x6c\56\x73\145\x74\x74\x69\x6e\147\163")->get("\x6d\x69\x6e\x69\157\x72\x61\x6e\x67\145\x5f\x6c\x69\143\x65\156\163\145\137\164\171\x70\145");
-    $gs = \Drupal::service("\x72\x6f\x75\164\x65\162\x2e\141\x64\x6d\x69\x6e\x5f\143\x6f\x6e\x74\x65\x78\164")->isAdminRoute();
-    $ZN = Utilities::getIsLicenseExpired($qh);
-    $gl = Markup::create("\74\x2f\163\x70\x61\x6e\x3e\74\141\x20\164\141\x72\x67\x65\164\75\x22\x5f\142\x6c\x61\x6e\x6b\x22\x20\x68\x72\145\x66\x3d\x22\x20" . Utilities::getUpgradeURL($nT) . "\x20\42\x3e\74\165\x3e\x68\145\x72\145\x3c\57\165\x3e\x3c\x2f\x61\x3e");
-    if (!($gs && isset($qh) && $ZN["\x4c\151\x63\x65\156\x73\x65\107\157\x69\x6e\147\124\x6f\105\170\x70\151\x72\145"])) {
-        goto VX;
+    $f5 = \Drupal::config("\x6d\x69\156\x69\157\x72\141\x6e\147\145\137\163\141\155\154\56\x73\x65\x74\164\x69\x6e\x67\163");
+    $Gy = $f5->get("\155\x69\156\151\157\162\141\156\x67\x65\137\x73\141\155\x6c\137\146\157\162\x63\145\x5f\141\x75\x74\150");
+    $XL = $f5->get("\155\x69\156\x69\x6f\x72\141\x6e\147\145\137\163\141\155\x6c\x5f\x61\165\164\x6f\x5f\x72\x65\144\151\x72\x65\143\x74\x5f\x74\x6f\x5f\151\144\160");
+    $vf = $f5->get("\x6d\151\x6e\151\x6f\x72\x61\x6e\147\145\137\163\141\x6d\x6c\137\145\156\141\142\x6c\x65\x5f\142\x61\x63\153\x64\157\x6f\162");
+    $lz = $f5->get("\x6d\x69\x6e\151\157\x72\x61\x6e\147\145\137\163\141\x6d\154\137\145\x6e\141\x62\x6c\145\137\x6c\157\147\151\156");
+    $ty = $f5->get("\x6d\151\x6e\151\x6f\x72\141\x6e\x67\x65\137\x62\x61\x63\153\x64\x6f\157\x72\137\161\x75\x65\x72\x79");
+    if (!$lz) {
+        goto hA;
     }
-    if ($ZN["\x4c\151\x63\145\x6e\163\145\x41\x6c\162\x65\x61\144\x79\x45\x78\x70\151\x72\145\144"]) {
-        goto dm;
+    $xa = $_GET;
+    if (!($Gy && !\Drupal::currentUser()->isAuthenticated() && !isset($_POST["\160\141\x73\x73"]))) {
+        goto zS;
     }
-    \Drupal::messenger()->addWarning(t("\131\x6f\x75\x72\40\155\x69\156\151\x4f\x72\141\x6e\x67\145\x20\x53\x41\115\114\x20\123\x50\x20\x6d\x6f\144\165\x6c\145\40\x6c\x69\143\145\x6e\x73\x65\x20\x77\x69\154\154\x20\145\170\x70\x69\162\x65\x20\x6f\x6e\40" . date("\x6c\40\x4d\40\152\54\x20\131", strtotime($qh)) . "\56\x20\117\x6e\x63\145\x20\x79\x6f\x75\x72\40\154\151\143\x65\x6e\x73\145\40\145\x78\160\x69\162\145\x73\54\x20\x79\x6f\165\40\167\151\x6c\x6c\x20\x6e\x6f\40\x6c\x6f\x6e\x67\x65\162\x20\x62\145\40\141\x62\x6c\145\x20\164\157\40\x72\x65\143\145\151\x76\145\40\x61\156\171\x20\x6d\x6f\144\165\x6c\x65\x20\165\x70\x64\141\164\145\163\x20\143\x6f\156\164\141\x69\156\151\x6e\x67\40\x73\145\143\x75\x72\x69\x74\x79\x20\160\141\x74\143\x68\x65\x73\54\40\142\165\x67\40\x66\151\170\x65\x73\54\40\156\145\167\40\146\x65\x61\164\x75\x72\x65\163\54\40\141\156\144\40\x65\x76\145\x6e\40\143\x6f\155\x70\141\164\151\x62\x69\x6c\x69\164\x79\40\x63\150\141\156\147\145\x73\x2e\40\x43\154\151\x63\x6b\x20" . $gl . "\40\x74\x6f\x20\x72\145\156\145\167\40\x79\x6f\165\162\40\154\151\x63\x65\x6e\x73\145\40\x61\164\x20\x35\60\45\x20\x6c\x69\143\145\x6e\163\145\x20\x63\x6f\x73\164\56"));
-    goto UT;
-    dm:
-    \Drupal::messenger()->addError(t("\x59\x6f\x75\162\40\155\x69\156\x69\x4f\x72\x61\x6e\147\x65\x20\x53\101\115\x4c\40\123\120\x20\155\x6f\x64\x75\154\x65\x20\154\151\143\145\x6e\x73\x65\x20\150\x61\x73\40\x65\x78\160\151\x72\145\144\x20\x6f\156\x20" . date("\154\x20\115\40\152\x2c\40\x59", strtotime($qh)) . "\x2e\x20\x54\150\x69\163\x20\x68\141\x73\40\x70\162\x65\x76\145\x6e\164\x65\x64\x20\x79\157\x75\40\x66\162\x6f\155\40\x72\145\143\145\151\166\x69\x6e\147\x20\141\156\x79\x20\x6d\157\144\165\154\145\40\165\160\x64\141\164\x65\x73\x20\143\157\156\x74\x61\151\156\x69\156\147\x20\163\x65\x63\165\x72\x69\164\171\40\160\141\x74\143\150\x65\163\54\40\x62\x75\x67\40\146\151\x78\x65\x73\x2c\40\x6e\x65\167\40\x66\x65\x61\x74\165\162\145\x73\x2c\40\x61\x6e\x64\40\145\166\x65\156\40\143\x6f\x6d\x70\141\x74\151\x62\151\x6c\151\164\171\40\x63\x68\x61\x6e\x67\145\x73\56\40\x43\x6c\151\x63\153\40" . $gl . "\x20\164\157\x20\x72\145\156\x65\167\40\x79\157\165\x72\x20\154\x69\x63\145\x6e\x73\145\40\141\164\40\x35\60\x25\40\154\151\143\x65\156\x73\x65\x20\143\157\163\164\56"));
-    UT:
-    VX:
-    if (!$S5) {
-        goto sH;
-    }
-    $V2 = $_GET;
-    if (!($h0 && !\Drupal::currentUser()->isAuthenticated() && !isset($_POST["\x70\141\x73\163"]))) {
-        goto ir;
-    }
-    if (!(!$M8 || !isset($V2["\x73\x61\155\x6c\x5f\154\x6f\x67\151\156"]) || $V2["\x73\x61\155\x6c\x5f\154\x6f\x67\x69\x6e"] != $D5)) {
-        goto iS;
+    if (!(!$vf || !isset($xa["\x73\x61\155\x6c\x5f\154\x6f\147\x69\156"]) || $xa["\x73\141\155\x6c\x5f\x6c\157\x67\151\156"] != $ty)) {
+        goto vV;
     }
     miniorange_samlController::saml_login();
-    iS:
-    ir:
-    if (!($pK == "\x75\x73\145\x72\137\x6c\157\147\151\x6e\137\x62\x6c\x6f\x63\153" || $pK == "\x75\163\145\162\x5f\154\157\x67\151\x6e\137\x66\x6f\162\155")) {
-        goto GD;
+    vV:
+    zS:
+    if (!($UW == "\165\x73\x65\162\137\154\157\x67\151\156\137\x62\x6c\x6f\x63\x6b" || $UW == "\x75\x73\x65\x72\137\154\x6f\x67\151\156\x5f\x66\x6f\162\155")) {
+        goto OO;
     }
-    if (!($Px && !\Drupal::currentUser()->isAuthenticated() && !isset($_POST["\160\x61\x73\163"]))) {
-        goto tT;
+    if (!($XL && !\Drupal::currentUser()->isAuthenticated() && !isset($_POST["\160\x61\x73\x73"]))) {
+        goto Wj;
     }
-    if (!(!$M8 || !isset($V2["\x73\141\155\154\137\x6c\157\x67\x69\156"]) || $V2["\163\x61\155\x6c\137\154\157\x67\x69\x6e"] != $D5)) {
-        goto s8;
+    if (!(!$vf || !isset($xa["\163\141\155\x6c\137\x6c\157\x67\x69\x6e"]) || $xa["\163\141\x6d\154\x5f\154\x6f\147\151\156"] != $ty)) {
+        goto Sy;
     }
     miniorange_samlController::saml_login();
-    s8:
-    tT:
-    $J5 = Utilities::getBaseUrl() . "\x2f\x73\141\x6d\x6c\x6c\x6f\147\x69\156";
-    $dO = $y8->get("\x6d\x69\156\151\157\x72\141\156\x67\x65\x5f\x73\x61\155\x6c\137\151\144\x70\137\x6e\x61\x6d\145");
-    $form["\x6c\x6f\x67\x69\x6e\x75\162\154"] = array(array("\x23\x6d\141\162\153\x75\x70" => "\x3c\x61\40\150\162\x65\x66\75\x22" . $J5 . "\x22\76\114\x6f\x67\40\151\156\40\x75\163\x69\156\147\40" . $dO . "\x3c\57\x61\76"));
-    GD:
-    sH:
-    \Drupal::service("\x70\x61\147\145\x5f\x63\x61\143\150\x65\137\153\x69\154\154\x5f\x73\x77\x69\x74\x63\x68")->trigger();
+    Sy:
+    Wj:
+    $Gs = Utilities::getBaseUrl() . "\x2f\163\141\x6d\x6c\154\157\x67\x69\x6e";
+    $WN = $f5->get("\155\151\x6e\x69\x6f\162\141\x6e\147\145\x5f\163\141\x6d\154\137\x69\x64\x70\x5f\156\141\155\145");
+    $form["\x6c\157\x67\x69\x6e\165\162\x6c"] = array(array("\x23\155\141\x72\x6b\165\160" => "\74\141\x20\150\x72\145\x66\75\42" . $Gs . "\42\76\x4c\x6f\x67\40\x69\x6e\x20\165\x73\151\156\x67\40" . $WN . "\74\x2f\x61\76"));
+    \Drupal::service("\160\141\x67\145\x5f\143\141\143\150\145\137\153\x69\154\154\137\163\x77\x69\164\x63\x68")->trigger();
+    OO:
+    hA:
 }
 function miniorange_saml_cron()
 {
+    miniorange_samlController::moLicenseFetch("\143\x72\x6f\156\122\x75\x6e");
     if (!(MiniorangeSAMLConstants::PLUGIN_VERSION == MiniorangeSAMLConstants::ENTERPRISE_VERSION)) {
-        goto ZV;
+        goto PA;
     }
     \Drupal\miniorange_saml\HigherUtilities::preodicMetadatafetch();
-    ZV:
+    PA:
 }
-function miniorange_saml_user_logout(AccountInterface $vw)
+function miniorange_saml_user_logout(AccountInterface $e5)
 {
+    if (!\Drupal::service("\x73\x65\x73\x73\x69\157\x6e")->get("\x6d\x61\163\x71\165\x65\x72\x61\144\151\156\x67")) {
+        goto Tg;
+    }
+    return;
+    Tg:
     miniorange_samlController::saml_logout();
 }

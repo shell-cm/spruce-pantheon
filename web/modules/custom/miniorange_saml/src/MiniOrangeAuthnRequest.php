@@ -7,79 +7,79 @@ use DOMElement;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 class MiniOrangeAuthnRequest
 {
-    public function initiateLogin($zG, $Zq, $YM, $Pu, $qr, $kB, $Nu, $c3)
+    public function initiateLogin($se, $WI, $Ot, $Qd, $wi, $xr, $Bw, $dQ)
     {
-        $PA = Utilities::createAuthnRequest($zG, $YM, $qr, $Zq, $kB, "\146\141\154\163\x65");
-        $this->sendSamlRequestByBindingType($PA, $kB, $Pu, $Zq, $Nu, $c3);
+        $ow = Utilities::createAuthnRequest($se, $Ot, $wi, $WI, $xr, "\146\x61\x6c\163\x65");
+        $this->sendSamlRequestByBindingType($ow, $xr, $Qd, $WI, $Bw, $dQ);
     }
-    function sendSamlRequestByBindingType($Dd, $kB, $Nd, $S1, $Nu, $c3)
+    function sendSamlRequestByBindingType($Mm, $xr, $WY, $yr, $Bw, $dQ)
     {
-        if (empty($kB) || $kB == "\110\124\124\x50\55\122\145\144\151\x72\x65\x63\164") {
-            goto SD;
+        if (empty($xr) || $xr == "\110\124\x54\x50\x2d\122\x65\x64\x69\x72\145\x63\x74") {
+            goto qN;
         }
-        if ($Nu) {
-            goto vL;
+        if ($Bw) {
+            goto JQ;
         }
-        $NG = base64_encode($Dd);
-        Utilities::postSAMLRequest($S1, $NG, $Nd);
+        $ld = base64_encode($Mm);
+        Utilities::postSAMLRequest($yr, $ld, $WY);
         exit;
-        vL:
-        $NG = Utilities::signXML($Dd, Utilities::getPublicCertificate(), Utilities::getPrivateKey(), $c3, "\116\x61\x6d\x65\x49\104\120\x6f\154\151\x63\171");
-        Utilities::postSAMLRequest($S1, $NG, $Nd);
-        goto uI;
-        SD:
-        $kR = $S1;
-        if (strpos($S1, "\x3f") !== false) {
-            goto iB;
+        JQ:
+        $ld = Utilities::signXML($Mm, Utilities::getPublicCertificate(), Utilities::getPrivateKey(), $dQ, "\x4e\x61\155\145\x49\104\120\x6f\x6c\151\143\171");
+        Utilities::postSAMLRequest($yr, $ld, $WY);
+        goto GV;
+        qN:
+        $kX = $yr;
+        if (strpos($yr, "\77") !== false) {
+            goto DD;
         }
-        $kR .= "\77";
-        goto Xy;
-        iB:
-        $kR .= "\x26";
-        Xy:
-        $Dd = "\x53\x41\x4d\x4c\x52\145\x71\165\x65\x73\x74\x3d" . $Dd . "\46\122\x65\x6c\141\x79\x53\164\141\164\145\x3d" . urlencode($Nd);
-        if (!$Nu) {
-            goto JW;
+        $kX .= "\77";
+        goto HL;
+        DD:
+        $kX .= "\46";
+        HL:
+        $Mm = "\123\x41\115\x4c\x52\x65\161\165\145\163\164\75" . $Mm . "\x26\x52\x65\154\x61\x79\x53\164\x61\x74\x65\x3d" . urlencode($WY);
+        if (!$Bw) {
+            goto XE;
         }
-        $mD = array("\164\x79\x70\x65" => "\160\x72\x69\x76\x61\164\x65");
-        if ($c3 == "\x52\x53\101\x5f\123\x48\x41\x32\65\66") {
-            goto LM;
+        $RO = array("\164\171\160\145" => "\160\162\x69\166\x61\x74\145");
+        if ($dQ == "\x52\x53\x41\137\x53\x48\x41\62\x35\66") {
+            goto SR;
         }
-        if ($c3 == "\122\123\101\137\123\x48\101\x33\x38\64") {
-            goto Zf;
+        if ($dQ == "\122\x53\x41\x5f\123\x48\x41\63\x38\x34") {
+            goto Y5;
         }
-        if ($c3 == "\122\x53\x41\137\x53\110\x41\65\x31\x32") {
-            goto HW;
+        if ($dQ == "\x52\123\101\x5f\123\x48\x41\65\x31\62") {
+            goto AC;
         }
-        if ($c3 == "\x52\x53\x41\137\x53\110\101\x31") {
-            goto lN;
+        if ($dQ == "\x52\x53\x41\137\123\110\101\x31") {
+            goto UN;
         }
-        goto un;
-        LM:
-        $Dd .= "\46\123\151\147\101\154\x67\x3d" . urlencode(XMLSecurityKey::RSA_SHA256);
-        $eQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, $mD);
-        goto un;
-        Zf:
-        $Dd .= "\x26\123\x69\x67\x41\x6c\x67\75" . urlencode(XMLSecurityKey::RSA_SHA384);
-        $eQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA384, $mD);
-        goto un;
-        HW:
-        $Dd .= "\46\123\151\x67\101\154\147\x3d" . urlencode(XMLSecurityKey::RSA_SHA512);
-        $eQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA512, $mD);
-        goto un;
-        lN:
-        $Dd .= "\x26\123\x69\147\101\x6c\147\x3d" . urlencode(XMLSecurityKey::RSA_SHA1);
-        $eQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, $mD);
-        un:
-        $eQ->loadKey(Utilities::getPrivateKey(), FALSE);
-        $fx = new XMLSecurityDSig();
-        $Tm = $eQ->signData($Dd);
-        $Tm = base64_encode($Tm);
-        $Dd .= "\x26\x53\x69\147\156\x61\164\165\162\145\75" . urlencode($Tm);
-        JW:
-        $kR .= $Dd;
-        $DI = new RedirectResponse($kR);
-        $DI->send();
-        uI:
+        goto X7;
+        SR:
+        $Mm .= "\x26\x53\x69\x67\101\x6c\x67\x3d" . urlencode(XMLSecurityKey::RSA_SHA256);
+        $yQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, $RO);
+        goto X7;
+        Y5:
+        $Mm .= "\46\123\x69\147\101\154\x67\x3d" . urlencode(XMLSecurityKey::RSA_SHA384);
+        $yQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA384, $RO);
+        goto X7;
+        AC:
+        $Mm .= "\x26\x53\x69\147\x41\x6c\x67\75" . urlencode(XMLSecurityKey::RSA_SHA512);
+        $yQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA512, $RO);
+        goto X7;
+        UN:
+        $Mm .= "\x26\x53\151\147\x41\154\x67\x3d" . urlencode(XMLSecurityKey::RSA_SHA1);
+        $yQ = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, $RO);
+        X7:
+        $yQ->loadKey(Utilities::getPrivateKey(), FALSE);
+        $d0 = new XMLSecurityDSig();
+        $Qz = $yQ->signData($Mm);
+        $Qz = base64_encode($Qz);
+        $Mm .= "\x26\x53\151\x67\x6e\141\x74\x75\162\145\75" . urlencode($Qz);
+        XE:
+        $kX .= $Mm;
+        $Yq = new RedirectResponse($kX);
+        $Yq->send();
+        GV:
     }
 }

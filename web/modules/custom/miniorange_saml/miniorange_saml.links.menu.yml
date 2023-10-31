@@ -43,13 +43,6 @@ miniorange_saml.advance_settings:
     parent: miniorange_saml.customer_setup
     weight: 60
 
-miniorange_saml.support:
-    route_name: miniorange_saml.support
-    title: 'Support'
-    description: 'Support Tab'
-    parent: miniorange_saml.customer_setup
-    weight: 70
-
 miniorange_saml.licensing:
   route_name: miniorange_saml.licensing
   title: 'Upgrade Plans'

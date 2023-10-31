@@ -38,7 +38,7 @@
 #}
 
 <ol class="usa-process-list usa-section">
-  {% for key, item in content.field_process_items if key|first != '#' %}
+  {% for key, item in content.field_process_items | filter((value, key) => key|first != '#') %}
     <li class="usa-process-list__item">
       <h4 class="usa-process-list__heading">{{ item['#paragraph'].field_header.value }}</h4>
       {# Use the same render array as item and set the '#paragraph'. #}
